@@ -1,4 +1,16 @@
 # BugBounty-Automation-Tool
 
 
-This a Bug Bounty Autoomation Tool made by Bash Script
+Made my own personalized Bug Bounty Recon automation tool using bash 
+
+Tools used 
+1) assetfinder
+2) amass
+3) httprobe
+4) subjack
+5) nmap
+6) Wayback
+
+
+Install all these Nessary tools to run the script without error !
+
