@@ -6,9 +6,9 @@ fi
 if [ ! -d "Info-Gather/recon" ];then
 	mkdir Info-Gather/recon
 fi
-#    if [ ! -d 'Info-Gather/recon/eyewitness' ];then
-#        mkdir Info-Gather/recon/eyewitness
-#    fi
+if [ ! -d 'Info-Gather/recon/eyewitness' ];then
+    mkdir Info-Gather/recon/eyewitness
+fi
 if [ ! -d "Info-Gather/recon/scans" ];then
 	mkdir Info-Gather/recon/scans
 fi
@@ -39,10 +39,10 @@ assetfinder $url >> Info-Gather/recon/assets.txt
 cat Info-Gather/recon/assets.txt | grep $1 >> Info-Gather/recon/final.txt
 rm Info-Gather/recon/assets.txt
  
-#echo "[+] Double checking for subdomains with amass..."
-#amass enum -d Info-Gather >> Info-Gather/recon/f.txt
-#sort -u Info-Gather/recon/f.txt >> Info-Gather/recon/final.txt
-#rm Info-Gather/recon/f.txt
+echo "[+] Double checking for subdomains with amass..."
+amass enum -d Info-Gather >> Info-Gather/recon/f.txt
+sort -u Info-Gather/recon/f.txt >> Info-Gather/recon/final.txt
+rm Info-Gather/recon/f.txt
  
 echo "[+] Probing for alive domains..."
 cat Info-Gather/recon/final.txt | sort -u | httprobe -s -p https:443 | sed 's/https\?:\/\///' | tr -d ':443' >> Info-Gather/recon/httprobe/a.txt
@@ -99,5 +99,5 @@ rm Info-Gather/recon/wayback/extensions/json1.txt
 rm Info-Gather/recon/wayback/extensions/php1.txt
 rm Info-Gather/recon/wayback/extensions/aspx1.txt
 
-#echo "[+] Running eyewitness against all compiled domains..."
-#python3 EyeWitness/EyeWitness.py --web -f $url/recon/httprobe/alive.txt -d $url/recon/eyewitness --resolve
+echo "[+] Running eyewitness against all compiled domains..."
+python3 EyeWitness/EyeWitness.py --web -f Info-Gather/recon/httprobe/alive.txt -d Info-Gather/recon/eyewitness --resolve
